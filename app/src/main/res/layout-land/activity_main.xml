@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/title_conversion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -15,11 +15,11 @@
         android:text="Celsius Degrees:"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/btn_convert"
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btn_convert"
         android:layout_width="409dp"
         android:layout_height="50dp"
         android:layout_marginStart="104dp"
@@ -30,19 +30,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/radioGroup"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="120dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
-        android:background="#FFDDDDDD"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView14"
@@ -90,18 +77,18 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/temperature_output"
         android:layout_width="120dp"
         android:layout_height="45dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="40dp"
         android:background="#FFDDDDDD"
-        android:textAlignment="viewEnd"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_convert" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/text_conversion_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -119,10 +106,10 @@
         android:layout_marginTop="15dp"
         android:background="#FFDDDDDD"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/text_conversion_history" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_clear"
         android:layout_width="228dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
@@ -130,5 +117,18 @@
         android:text="Clear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <EditText
+        android:id="@+id/temperature_input"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:background="#FFDDDDDD"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

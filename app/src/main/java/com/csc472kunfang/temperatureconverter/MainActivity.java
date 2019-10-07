@@ -12,13 +12,57 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean isF2C = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    private boolean isF2C = true;
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        EditText temperature_input_text = findViewById(R.id.temperature_input);
+        TextView temperature_output_view = findViewById(R.id.temperature_output);
+        TextView conversion_history = findViewById(R.id.text_conversion_history);
+
+        outState.putBoolean("IsF2C",isF2C);
+        outState.putString("UserInput",temperature_input_text.getText().toString());
+        outState.putString("Output",temperature_output_view.getText().toString());
+        outState.putString("HistoryRecord",conversion_history.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        EditText temperature_input_text = findViewById(R.id.temperature_input);
+        TextView temperature_output_view = findViewById(R.id.temperature_output);
+        TextView conversion_history = findViewById(R.id.text_conversion_history);
+
+        temperature_input_text.setText(savedInstanceState.getString("UserInput"));
+        temperature_output_view.setText(savedInstanceState.getString("Output"));
+        conversion_history.setText(savedInstanceState.getString("HistoryRecord"));
+
+        isF2C = savedInstanceState.getBoolean("IsF2C");
+
+        RadioButton btn_f2c = findViewById(R.id.radio_btn_f2c);
+        RadioButton btn_c2f = findViewById(R.id.radio_btn_c2f);
+
+        btn_f2c.setChecked(isF2C);
+        btn_c2f.setChecked(!isF2C);
+
+        if(isF2C)
+        {
+            onRadioButtonClicked(btn_f2c);
+        }
+        else
+            onRadioButtonClicked(btn_c2f);
+
+
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 
     public void doConvert(View v)
     {
@@ -81,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void AddHistory(boolean F2CMode,String from,String to)
     {
-        TextView temperature_format_text1 = findViewById(R.id.text_conversion_history);
+        TextView conversion_history = findViewById(R.id.text_conversion_history);
         if(F2CMode)
         {
-            temperature_format_text1.setText(temperature_format_text1.getText().toString() + "\n" + from + " F" + "==>" + to + " C");
+            conversion_history.setText(conversion_history.getText().toString() + "\n" + from + " F" + "==>" + to + " C");
         }
         else
         {
-            temperature_format_text1.setText(temperature_format_text1.getText().toString() + "\n" + from + " C" + "==>" + to + " F");
+            conversion_history.setText(conversion_history.getText().toString() + "\n" + from + " C" + "==>" + to + " F");
         }
 
     }
