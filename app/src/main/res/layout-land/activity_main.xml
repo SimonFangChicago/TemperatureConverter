@@ -76,13 +76,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/radio_btn_f2c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Fahrenheit-to-Celsius" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/radio_btn_c2f"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Celsius-to-Fahrenheit" />

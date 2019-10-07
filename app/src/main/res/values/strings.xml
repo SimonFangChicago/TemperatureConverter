@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TemperatureConverter</string>
+    <string name="f2c">Fahrenheit-to-Celsius</string>
+    <string name="c2f">Celsius-to-Fahrenheit</string>
 </resources>
