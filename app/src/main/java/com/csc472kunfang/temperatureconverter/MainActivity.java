@@ -14,18 +14,40 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isF2C = true;
 
+    private  EditText temperature_input_text;
+    private  TextView temperature_output_view;
+    private TextView conversion_history;
+    private TextView temperature_format_text1;
+    private TextView temperature_format_text2;
+    private TextView temperature_format_text1_land;
+    private TextView temperature_format_text2_land;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        temperature_input_text = findViewById(R.id.temperature_input);
+        temperature_output_view = findViewById(R.id.temperature_output);
+        conversion_history = findViewById(R.id.history_record_text);
+        temperature_format_text1 = findViewById(R.id.temperature_format_text1);
+        temperature_format_text2 = findViewById(R.id.temperature_format_text2);
+        temperature_format_text1_land = findViewById(R.id.temperature_format_text1_land);
+        temperature_format_text2_land = findViewById(R.id.temperature_format_text2_land);
+
+        Log.d("MyTest", temperature_input_text == null?"null":"temperature_input_text");
+        Log.d("MyTest", temperature_output_view == null?"null":"temperature_output_view");
+        Log.d("MyTest", conversion_history == null?"null":"conversion_history");
+        Log.d("MyTest", temperature_format_text1 == null?"null":"temperature_format_text1");
+        Log.d("MyTest", temperature_format_text2 == null?"null":"temperature_format_text2");
+        Log.d("MyTest", temperature_format_text1_land == null?"null":"temperature_format_text1_land");
+        Log.d("MyTest", temperature_format_text2_land == null?"null":"temperature_format_text2_land");
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState)
     {
-        EditText temperature_input_text = findViewById(R.id.temperature_input);
-        TextView temperature_output_view = findViewById(R.id.temperature_output);
-        TextView conversion_history = findViewById(R.id.text_conversion_history);
+
 
         outState.putBoolean("IsF2C",isF2C);
         outState.putString("UserInput",temperature_input_text.getText().toString());
@@ -37,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState)
     {
-        EditText temperature_input_text = findViewById(R.id.temperature_input);
-        TextView temperature_output_view = findViewById(R.id.temperature_output);
-        TextView conversion_history = findViewById(R.id.text_conversion_history);
 
         temperature_input_text.setText(savedInstanceState.getString("UserInput"));
         temperature_output_view.setText(savedInstanceState.getString("Output"));
@@ -66,15 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void doConvert(View v)
     {
-        EditText temperature_input_text = findViewById(R.id.temperature_input);
-
         double input_number = Double.parseDouble(temperature_input_text.getText().toString());
 
-
-
-        //Log.d("HW1", "doConvert: " + temperature_input_text.getText().toString());
-
-        TextView temperature_output_view = findViewById(R.id.temperature_output);
 
         double output_number = 0;
 
@@ -98,15 +110,14 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
-        TextView temperature_format_text1 = findViewById(R.id.temperature_format_text1);
-        TextView temperature_format_text2 = findViewById(R.id.temperature_format_text2);
-
         switch(view.getId()) {
             case R.id.radio_btn_f2c:
                 if (checked)
 
-                    temperature_format_text1.setText(R.string.f2c);
-                    temperature_format_text2.setText(R.string.c2f);
+                    if(temperature_format_text1!=null)temperature_format_text1.setText(R.string.f2c);
+                    if(temperature_format_text2!=null)temperature_format_text2.setText(R.string.c2f);
+                    if(temperature_format_text1_land!=null)temperature_format_text1_land.setText(R.string.f2c);
+                    if(temperature_format_text2_land!=null)temperature_format_text2_land.setText(R.string.c2f);
 
                     isF2C = true;
 
@@ -114,8 +125,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.radio_btn_c2f:
                 if (checked)
 
-                    temperature_format_text1.setText(R.string.c2f);
-                    temperature_format_text2.setText(R.string.f2c);
+                    if(temperature_format_text1!=null)temperature_format_text1.setText(R.string.c2f);
+                    if(temperature_format_text2!=null)temperature_format_text2.setText(R.string.f2c);
+                    if(temperature_format_text1_land!=null)temperature_format_text1_land.setText(R.string.c2f);
+                    if(temperature_format_text2_land!=null)temperature_format_text2_land.setText(R.string.f2c);
 
                     isF2C = false;
 
@@ -125,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void AddHistory(boolean F2CMode,String from,String to)
     {
-        TextView conversion_history = findViewById(R.id.text_conversion_history);
+        TextView conversion_history = findViewById(R.id.history_record_text);
         if(F2CMode)
         {
             conversion_history.setText(conversion_history.getText().toString() + "\n" + from + " F" + "==>" + to + " C");
@@ -135,5 +148,11 @@ public class MainActivity extends AppCompatActivity {
             conversion_history.setText(conversion_history.getText().toString() + "\n" + from + " C" + "==>" + to + " F");
         }
 
+    }
+
+    public void doClear(View v)
+    {
+        TextView historyView = findViewById(R.id.history_record_text);
+        historyView.setText("");
     }
 }
