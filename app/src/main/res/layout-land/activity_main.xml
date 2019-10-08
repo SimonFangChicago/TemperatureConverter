@@ -55,6 +55,7 @@
             android:id="@+id/radio_btn_f2c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:onClick="onRadioButtonClicked"
             android:text="Fahrenheit-to-Celsius" />
 
